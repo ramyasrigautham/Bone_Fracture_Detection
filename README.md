@@ -82,7 +82,26 @@ Dataset/
 To train the YOLO model on your dataset, use the following command:
 
 ```bash
-python train.py --data data.yaml --cfg yolov5.yaml --epochs 50
+results_medium = model_medium.train(data=DATA_YML,batch = 32,
+                                epochs= 100,
+                                #imgsz= 512,
+                                # seed = 9418,
+                                save_period = 10,
+                                save= True,
+                                optimizer = 'AdamW',
+                                cos_lr = True,
+                                lr0 = 0.001,
+                                lrf = 0.00001,
+                                cache = True,
+                                weight_decay = 5e-4,
+                                warmup_momentum = 0.6,
+                                momentum = 0.9,
+                                val=True,
+                                patience= 0,
+                                name = 'yolov8m',
+                                profile= True
+#                                 device = [0, 1])
+                                )
 ```
 
 This command will start the training process using the specified configuration file and dataset.
@@ -92,16 +111,23 @@ This command will start the training process using the specified configuration f
 After training the model, you can use it to detect fractures in new X-ray images. Use the following command to run the model on an image:
 
 ```bash
-python detect.py --source path/to/image.jpg --weights path/to/weights.pt
+!yolo task=detect mode=predict model='/content/runs/detect/yolov8m2/weights/best.pt' conf=0.25 source='/content/drive/MyDrive/Colab Notebooks/Data/OriginalData/BoneFracture/test/images' save=True
 ```
 
 The detected fractures will be highlighted in the output image.
 
 ## Results
 
-The model achieved an accuracy of XX% on the test set. Below is an example of fracture detection:
+![Home Page](images/Yolo_homePage.jpg)
 
-![Example Detection](images/example_detection.png)
+![Yolo Page](images/YOLO_PAGE.jpg)
+
+The model achieved an accuracy of 70% on the test set. Below is an example of fracture detection:
+
+![Example Detection](images/yolo_result.jpg)
+
+Confusion Matrix:
+![Matrix](images/yolo_ConfusionMatrix.jpg)
 
 ## Contributing
 
