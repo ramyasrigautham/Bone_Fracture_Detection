@@ -25,6 +25,7 @@ This project aims to develop an automated system for detecting bone fractures fr
 - [Model Training](#model-training)
 - [Usage](#usage)
 - [Results](#results)
+- [Running the Repository](#running-the-repository)
 - [Contributing](#contributing)
 - [License](#license)
 - [Acknowledgements](#acknowledgements)
@@ -115,6 +116,19 @@ After training the model, you can use it to detect fractures in new X-ray images
 ```
 
 The detected fractures will be highlighted in the output image.
+
+## Running the Repository
+
+To run the web application locally, follow these steps:
+
+1. Clone the repository to your local machine.
+2. Create a virtual environment for the project.
+3. Install all the required dependencies.
+4. Download the pre-trained weights for the models here. Make sure to add them in a `weights` folder in the project directory.
+5. Run the following command in your terminal to run the app:
+   ```bash
+   streamlit run app.py
+   ```
 
 ## Results
 
